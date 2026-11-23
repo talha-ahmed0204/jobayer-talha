@@ -122,6 +122,7 @@ main { max-width: 1050px; margin: 0 auto; padding: 0 6vw; }
 .card:hover { transform: translateY(-6px); border-color: var(--accent); }
 .card-top { display: flex; justify-content: space-between; font-size: 1.5rem; margin-bottom: 18px; }
 .card-top a { color: var(--muted); }
+.folder { color: var(--accent); }
 .card-top a:hover { color: var(--accent); }
 .card h4 { font-size: 1.2rem; margin-bottom: 10px; }
 .card p { color: var(--muted); flex: 1; }
