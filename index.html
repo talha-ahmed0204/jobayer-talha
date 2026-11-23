@@ -1,134 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jubayer — Personal Website</title>
-  <meta name="description" content="Hi, I'm Jubayer. Welcome to my personal website and portfolio." />
+  <title>Jobayer Ahmed Talha — CS Student &amp; AI Enthusiast</title>
+  <meta name="description" content="Jobayer Ahmed Talha — Computer Science diploma student from Dhaka, Bangladesh, into Python, AI and motion design." />
+  <meta property="og:title" content="Jobayer Ahmed Talha" />
+  <meta property="og:description" content="CS diploma student from Dhaka, Bangladesh. Python, AI and motion design." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%236366f1'/><text x='50' y='68' font-size='52' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'>JT</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
-  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="grid-lines"></div></div>
 
   <header class="nav">
-    <a href="#home" class="logo">J<span>.</span></a>
-    <nav>
+    <a href="#home" class="logo">JT<span>.</span></a>
+    <nav class="links">
       <a href="#about">About</a>
       <a href="#education">Education</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
-      <a href="#contact" class="btn btn-small">Contact</a>
+      <a href="#contact">Contact</a>
     </nav>
+    <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+      <svg class="sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
   </header>
 
   <main>
+    <!-- HERO -->
     <section id="home" class="hero">
-      <p class="mono hello">Hello, world! I'm</p>
-      <h1>Jubayer<span class="accent">.</span></h1>
-      <h2 class="typed"><span id="typed"></span><span class="cursor">|</span></h2>
+      <div class="badge"><span class="pulse"></span> Open to learning &amp; collaboration</div>
+      <h1>Hi, I'm <span class="gradient">Jobayer Ahmed Talha</span></h1>
+      <p class="hero-sub">
+        <span id="typed"></span><span class="cursor">|</span>
+      </p>
       <p class="lead">
-        A <span id="age">19</span>-year-old Computer Science diploma student from Bangladesh who loves building
-        things on the internet, learning new technologies, and turning ideas into reality.
+        A <b id="age">19</b>-year-old Computer Science diploma student from <b>Dhaka, Bangladesh</b>,
+        exploring Python, artificial intelligence and motion design — and building things along the way.
       </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn">See my work</a>
-        <a href="#contact" class="btn btn-ghost">Say hello</a>
+      <div class="actions">
+        <a href="#projects" class="btn primary">View my work</a>
+        <a href="#contact" class="btn ghost">Get in touch</a>
+      </div>
+      <div class="hero-meta">
+        <span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-6.5-8-13a8 8 0 0 1 16 0c0 6.5-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></svg>
+          Dhaka, Bangladesh
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
+          Narsingdi Govt. Polytechnic Institute
+        </span>
       </div>
     </section>
 
-    <section id="about" class="section reveal">
-      <h3 class="section-title"><span class="mono accent">01.</span> About me</h3>
-      <div class="about-grid">
-        <div class="about-text">
+    <!-- ABOUT (bento) -->
+    <section id="about" class="section">
+      <div class="section-head reveal">
+        <p class="eyebrow">01 — About</p>
+        <h2>A little about me</h2>
+      </div>
+      <div class="bento">
+        <article class="tile tile-bio reveal">
+          <h3>Who I am</h3>
           <p>
-            Hi! I'm <strong>Jubayer</strong>, born on 4 September 2007. I'm curious by nature and
-            enjoy exploring technology, design, and creative projects. I'm currently pursuing a
-            <strong>Diploma in Computer Science</strong>, building a strong foundation in programming and software.
+            I'm Jobayer, a curious student who loves technology. I'm currently in my
+            <b>4th semester</b> of a <b>Diploma in Computer Science</b>. I enjoy coding in
+            <b>Python</b>, experimenting with <b>AI tools</b>, and creating motion graphics in
+            <b>After Effects</b>.
           </p>
           <p>
-            This website is my little corner of the internet — a place to introduce myself,
-            share what I'm working on, and connect with people who share my interests.
+            My goal is to grow into a skilled developer who uses AI to build useful, creative
+            products — and this website is the first step in sharing that journey.
           </p>
-          <p>
-            When I'm not in front of a screen, you'll find me learning something new, spending time
-            with friends and family, or planning my next idea.
-          </p>
-        </div>
-        <div class="about-card">
-          <div class="avatar">J</div>
+        </article>
+
+        <article class="tile tile-facts reveal">
+          <div class="avatar">JT</div>
           <ul class="facts">
-            <li><span>Name</span>Jubayer</li>
             <li><span>Age</span><b id="age2">19</b></li>
-            <li><span>Born</span>4 Sep 2007</li>
-            <li><span>From</span>Bangladesh</li>
-            <li><span>Studying</span>Diploma in CS</li>
+            <li><span>Born</span><b>4 Sep 2007</b></li>
+            <li><span>Based in</span><b>Dhaka, BD</b></li>
+            <li><span>Semester</span><b>4th</b></li>
           </ul>
-        </div>
+        </article>
+
+        <article class="tile tile-interests reveal">
+          <h3>Interests</h3>
+          <div class="interest">
+            <div class="ico">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+            </div>
+            <div><b>Artificial Intelligence</b><p>Exploring how AI can create, automate and solve problems.</p></div>
+          </div>
+          <div class="interest">
+            <div class="ico">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="m17 10 5-3v10l-5-3z"/></svg>
+            </div>
+            <div><b>Motion Design</b><p>Creating animations and visual effects in Adobe After Effects.</p></div>
+          </div>
+        </article>
+
+        <article class="tile tile-langs reveal">
+          <h3>Languages I speak</h3>
+          <ul class="langs">
+            <li><span>Bangla</span><em>Native</em><i style="--w:100%"></i></li>
+            <li><span>English</span><em>Intermediate</em><i style="--w:65%"></i></li>
+            <li><span>Hindi</span><em>Conversational</em><i style="--w:60%"></i></li>
+            <li><span>Urdu</span><em>Conversational</em><i style="--w:55%"></i></li>
+            <li><span>Arabic</span><em>Basic</em><i style="--w:25%"></i></li>
+          </ul>
+        </article>
       </div>
     </section>
 
-    <section id="education" class="section reveal">
-      <h3 class="section-title"><span class="mono accent">02.</span> Education</h3>
+    <!-- EDUCATION -->
+    <section id="education" class="section">
+      <div class="section-head reveal">
+        <p class="eyebrow">02 — Education</p>
+        <h2>Where I'm learning</h2>
+      </div>
       <div class="timeline">
-        <div class="timeline-item">
+        <div class="t-item reveal">
           <span class="dot"></span>
-          <p class="mono accent when">Present</p>
-          <h4>Diploma in Computer Science</h4>
-          <p class="muted">Studying the fundamentals of computing: programming, data structures, databases, networking and web development.</p>
+          <div class="t-card">
+            <div class="t-top">
+              <h3>Diploma in Computer Science</h3>
+              <span class="pill">Ongoing · 4th Semester</span>
+            </div>
+            <p class="t-org">Narsingdi Government Polytechnic Institute</p>
+            <p class="muted">
+              Building a solid foundation in programming, computer fundamentals, databases,
+              networking and software development.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="skills" class="section reveal">
-      <h3 class="section-title"><span class="mono accent">03.</span> Skills &amp; interests</h3>
-      <div class="chips">
-        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Web Design</span>
-        <span>Problem Solving</span><span>Creativity</span><span>Communication</span><span>Fast Learner</span>
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="section-head reveal">
+        <p class="eyebrow">03 — Skills</p>
+        <h2>What I work with</h2>
+      </div>
+      <div class="skill-groups">
+        <div class="tile reveal">
+          <h3>Programming</h3>
+          <div class="chips"><span>Python</span><span>AI-assisted development</span><span>Web basics</span></div>
+        </div>
+        <div class="tile reveal">
+          <h3>Tools</h3>
+          <div class="chips"><span>VS Code</span><span>Antigravity</span><span>ChatGPT</span><span>Devin</span></div>
+        </div>
+        <div class="tile reveal">
+          <h3>Creative</h3>
+          <div class="chips"><span>Adobe After Effects</span><span>Motion graphics</span></div>
+        </div>
+        <div class="tile reveal">
+          <h3>Office &amp; general</h3>
+          <div class="chips"><span>MS Word</span><span>MS Excel</span><span>MS PowerPoint</span><span>Fast typing</span><span>Computer fundamentals</span></div>
+        </div>
       </div>
     </section>
 
-    <section id="projects" class="section reveal">
-      <h3 class="section-title"><span class="mono accent">04.</span> Projects</h3>
-      <div class="cards">
-        <article class="card">
-          <div class="card-top"><svg class="folder" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><a href="#" aria-label="Link">&#8599;</a></div>
-          <h4>This Website</h4>
-          <p>My personal website and portfolio, designed and built from scratch and hosted on Vercel.</p>
-          <div class="tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="section-head reveal">
+        <p class="eyebrow">04 — Projects</p>
+        <h2>Things I've built</h2>
+      </div>
+      <div class="projects">
+        <article class="project reveal">
+          <div class="p-visual v1"><span>01</span></div>
+          <div class="p-body">
+            <h3>Personal Portfolio</h3>
+            <p>This website — a modern, responsive portfolio with dark/light themes and smooth animations, built with AI and hosted on Vercel.</p>
+            <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>AI</span></div>
+          </div>
         </article>
-        <article class="card">
-          <div class="card-top"><svg class="folder" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><a href="#" aria-label="Link">&#8599;</a></div>
-          <h4>Project Two</h4>
-          <p>A short description of another project you're proud of. Replace this with your own.</p>
-          <div class="tags"><span>Tag</span><span>Tag</span></div>
+        <article class="project reveal">
+          <div class="p-visual v2"><span>02</span></div>
+          <div class="p-body">
+            <h3>AI-Built Website</h3>
+            <p>My first website, created by combining AI tools with my own ideas — the project that got me hooked on building for the web.</p>
+            <div class="tags"><span>AI tools</span><span>Web</span></div>
+          </div>
         </article>
-        <article class="card">
-          <div class="card-top"><svg class="folder" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><a href="#" aria-label="Link">&#8599;</a></div>
-          <h4>Project Three</h4>
-          <p>Another placeholder project. Add a title, a one-line description and a link.</p>
-          <div class="tags"><span>Tag</span><span>Tag</span></div>
+        <article class="project reveal soon">
+          <div class="p-visual v3"><span>+</span></div>
+          <div class="p-body">
+            <h3>More coming soon</h3>
+            <p>Python and AI projects from my studies are on the way. Stay tuned!</p>
+            <div class="tags"><span>Python</span><span>AI</span></div>
+          </div>
         </article>
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact" class="section contact reveal">
-      <h3 class="section-title center"><span class="mono accent">05.</span> Get in touch</h3>
-      <p class="lead center">
-        Whether you have a question, an idea, or just want to say hi — my inbox is always open.
-      </p>
-      <a class="btn btn-big" href="mailto:jatalha0204@gmail.com">Say hello</a>
+      <p class="eyebrow">05 — Contact</p>
+      <h2>Let's connect</h2>
+      <p class="lead">Have a question, an idea, or just want to say hi? My inbox is always open.</p>
+      <a class="btn primary big" href="mailto:jatalha0204@gmail.com">jatalha0204@gmail.com</a>
       <div class="socials">
-        <a href="https://github.com/talha-ahmed0204" target="_blank" rel="noopener">GitHub</a>
-        <a href="mailto:jatalha0204@gmail.com">Email</a>
+        <a href="mailto:jatalha0204@gmail.com" aria-label="Email" class="icon-btn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+        </a>
+        <a href="https://github.com/talha-ahmed0204" target="_blank" rel="noopener" aria-label="GitHub" class="icon-btn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+        </a>
+        <a href="#" data-todo="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn" class="icon-btn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg>
+        </a>
+        <a href="#" data-todo="facebook" target="_blank" rel="noopener" aria-label="Facebook" class="icon-btn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12z"/></svg>
+        </a>
       </div>
     </section>
   </main>
 
   <footer>
-    <p class="mono">Designed &amp; built by Jubayer &middot; <span id="year"></span></p>
+    <p>© <span id="year"></span> Jobayer Ahmed Talha · Made in Dhaka with code &amp; AI</p>
   </footer>
 
   <script src="script.js"></script>
