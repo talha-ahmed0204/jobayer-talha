@@ -152,7 +152,7 @@ const dangler = document.querySelector('.dangler');
 function updateDrop() {
   const max = document.documentElement.scrollHeight - innerHeight;
   const p = max > 0 ? scrollY / max : 0;
-  dangler.style.setProperty('--drop', (40 + p * (innerHeight * 0.55)) + 'px');
+  dangler.style.setProperty('--drop', (80 + p * (innerHeight * 0.5)) + 'px');
 }
 addEventListener('scroll', updateDrop, { passive: true });
 updateDrop();
