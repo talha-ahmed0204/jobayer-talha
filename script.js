@@ -6,11 +6,13 @@ if (now < new Date(now.getFullYear(), birth.getMonth(), birth.getDate())) age--;
 document.querySelectorAll('#age, #age2').forEach(el => (el.textContent = age));
 document.getElementById('year').textContent = now.getFullYear();
 
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Typing effect
 const words = ['CS Diploma Student', 'Python Learner', 'AI Enthusiast', 'Motion Designer', 'Web Slinger'];
 const typed = document.getElementById('typed');
 let w = 0, i = 0, deleting = false;
-(function type() {
+if (!reduceMotion) (function type() {
   const word = words[w];
   typed.textContent = '> ' + word.slice(0, i);
   if (!deleting && i < word.length) i++;
@@ -28,23 +30,60 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// Active nav link
+// Mobile menu
+const nav = document.querySelector('.nav');
+const menuBtn = document.querySelector('.menu-btn');
+function setMenu(open) {
+  nav.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', open);
+  menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+menuBtn.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+nav.querySelectorAll('.links a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+document.addEventListener('click', e => { if (!nav.contains(e.target)) setMenu(false); });
+
+// Copy email
+const toast = document.querySelector('.toast');
+document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(btn.dataset.copy);
+    toast.textContent = 'Email copied to clipboard!';
+  } catch {
+    toast.textContent = btn.dataset.copy;
+  }
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => (toast.textContent = ''), 2500);
+}));
+
+// Scroll-driven UI: active nav link, progress bar, back-to-top, dangling spider
 const links = document.querySelectorAll('.links a');
 const sections = [...links].map(a => document.querySelector(a.getAttribute('href')));
-addEventListener('scroll', () => {
+const progress = document.querySelector('.progress');
+const toTop = document.querySelector('.to-top');
+const dangler = document.querySelector('.dangler');
+let ticking = false;
+function onScroll() {
+  ticking = false;
   const y = scrollY + 140;
   let current = null;
   sections.forEach((s, idx) => { if (s && s.offsetTop <= y) current = idx; });
-  links.forEach((a, idx) => a.classList.toggle('active', idx === current));
-}, { passive: true });
-
-// Hide social links that aren't set yet
-document.querySelectorAll('[data-todo]').forEach(a => { if (a.getAttribute('href') === '#') a.style.display = 'none'; });
+  links.forEach((a, idx) => {
+    a.classList.toggle('active', idx === current);
+    idx === current ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current');
+  });
+  const max = document.documentElement.scrollHeight - innerHeight;
+  const p = max > 0 ? scrollY / max : 0;
+  progress.style.setProperty('--p', p);
+  toTop.classList.toggle('show', scrollY > innerHeight * 0.8);
+  dangler.style.setProperty('--drop', (80 + p * (innerHeight * 0.5)) + 'px');
+}
+addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+onScroll();
 
 // ===== Spider web canvas =====
 const canvas = document.getElementById('web');
 const ctx = canvas.getContext('2d');
-const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W, H, DPR, webs = [];
 const mouse = { x: -9999, y: -9999 };
 const shots = [];
@@ -76,7 +115,10 @@ function resize() {
   ];
 }
 
+let running = false;
+function wake() { if (!running && !document.hidden) { running = true; requestAnimationFrame(draw); } }
 function draw() {
+  let moving = false;
   ctx.clearRect(0, 0, W, H);
   ctx.lineWidth = 1;
   for (const web of webs) {
@@ -84,7 +126,9 @@ function draw() {
       const dx = mouse.x - p.ox, dy = mouse.y - p.oy, d = Math.hypot(dx, dy);
       const pull = d < 180 ? (1 - d / 180) * 0.35 : 0;
       const tx = p.ox + dx * pull, ty = p.oy + dy * pull;
-      p.x += (tx - p.x) * 0.12; p.y += (ty - p.y) * 0.12;
+      const mx = (tx - p.x) * 0.12, my = (ty - p.y) * 0.12;
+      p.x += mx; p.y += my;
+      if (Math.abs(mx) + Math.abs(my) > 0.02) moving = true;
     }
     ctx.strokeStyle = 'rgba(200, 215, 255, 0.22)';
     ctx.beginPath();
@@ -133,32 +177,27 @@ function draw() {
       ctx.stroke();
     }
   }
-  requestAnimationFrame(draw);
+  if (moving || shots.length) requestAnimationFrame(draw);
+  else running = false;
 }
 
 resize();
-addEventListener('resize', resize);
-addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
-document.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
-addEventListener('click', e => {
-  if (e.target.closest('a, button')) return;
-  const fromLeft = e.clientX > W / 2;
-  shots.push({ sx: fromLeft ? 0 : W, sy: H, x: e.clientX, y: e.clientY, t: 0, rot: Math.random() * Math.PI });
-});
-if (reduceMotion) { draw(); } else { requestAnimationFrame(draw); }
-
-// Dangling spider drops as you scroll
-const dangler = document.querySelector('.dangler');
-function updateDrop() {
-  const max = document.documentElement.scrollHeight - innerHeight;
-  const p = max > 0 ? scrollY / max : 0;
-  dangler.style.setProperty('--drop', (80 + p * (innerHeight * 0.5)) + 'px');
+addEventListener('resize', () => { resize(); wake(); });
+if (!reduceMotion) {
+  addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; wake(); }, { passive: true });
+  document.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; wake(); });
+  addEventListener('click', e => {
+    if (e.target.closest('a, button, input, textarea')) return;
+    const fromLeft = e.clientX > W / 2;
+    shots.push({ sx: fromLeft ? 0 : W, sy: H, x: e.clientX, y: e.clientY, t: 0, rot: Math.random() * Math.PI });
+    wake();
+  });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) wake(); });
 }
-addEventListener('scroll', updateDrop, { passive: true });
-updateDrop();
+wake();
 
 // 3D tilt on cards
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches && matchMedia('(hover: hover)').matches) {
+if (!reduceMotion && matchMedia('(hover: hover)').matches) {
   document.querySelectorAll('.tile, .t-card, .project').forEach(card => {
     card.classList.add('tilt');
     card.addEventListener('pointermove', e => {
@@ -173,4 +212,17 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches && matchMedia('(hove
       card.style.setProperty('--ry', '0deg');
     });
   });
+}
+
+// Load the 3D globe once the page is idle or the visitor interacts, so it never slows the first paint
+let globeLoaded = false;
+function loadGlobe() {
+  if (globeLoaded) return;
+  globeLoaded = true;
+  ['pointermove', 'pointerdown', 'scroll', 'keydown'].forEach(ev => removeEventListener(ev, loadGlobe));
+  import('./three-scene.js').catch(() => document.querySelector('.hero-3d')?.remove());
+}
+['pointermove', 'pointerdown', 'scroll', 'keydown'].forEach(ev => addEventListener(ev, loadGlobe, { passive: true, once: true }));
+if (matchMedia('(hover: hover) and (min-width: 901px)').matches) {
+  addEventListener('load', () => setTimeout(() => (window.requestIdleCallback || setTimeout)(loadGlobe), 1500));
 }

@@ -1,0 +1,9 @@
+{
+  "name": "Jobayer Ahmed Talha",
+  "short_name": "Jobayer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070b1d",
+  "theme_color": "#070b1d",
+  "icons": [{ "src": "assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }, { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

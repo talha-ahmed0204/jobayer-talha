@@ -3,9 +3,10 @@ import * as THREE from 'three';
 const canvas = document.getElementById('globe');
 const host = canvas.parentElement;
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const small = matchMedia('(max-width: 900px)').matches;
 
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: !small, alpha: true, powerPreference: 'low-power' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, small ? 1.5 : 2));
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
 camera.position.set(0, 0, 7.5);
@@ -58,7 +59,7 @@ ring.rotation.x = Math.PI / 2.4;
 scene.add(ring);
 
 // Particle field
-const COUNT = 700;
+const COUNT = small ? 300 : 700;
 const pos = new Float32Array(COUNT * 3);
 for (let i = 0; i < COUNT; i++) {
   const r = 3 + Math.random() * 3.5, a = Math.random() * Math.PI * 2, b = Math.acos(2 * Math.random() - 1);
@@ -89,11 +90,12 @@ resize();
 
 let visible = true;
 new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(host);
+host.classList.add('ready');
 
 const clock = new THREE.Clock();
 function frame() {
   requestAnimationFrame(frame);
-  if (!visible) return;
+  if (!visible || document.hidden) return;
   const t = clock.getElapsedTime();
   const spin = reduceMotion ? 0 : 1;
   globe.rotation.y += (0.0025 + target.x * 0.004) * spin;
