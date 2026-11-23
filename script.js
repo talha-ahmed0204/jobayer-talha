@@ -6,7 +6,7 @@ document.getElementById('age').textContent = age;
 document.getElementById('age2').textContent = age;
 document.getElementById('year').textContent = now.getFullYear();
 
-const words = ['Student.', 'Creator.', 'Tech Enthusiast.', 'Lifelong Learner.'];
+const words = ['CS Diploma Student.', 'Creator.', 'Tech Enthusiast.', 'Lifelong Learner.'];
 const el = document.getElementById('typed');
 let w = 0, i = 0, deleting = false;
 (function type() {

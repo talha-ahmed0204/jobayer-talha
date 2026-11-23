@@ -100,6 +100,13 @@ main { max-width: 1050px; margin: 0 auto; padding: 0 6vw; }
 .facts li:last-child { border-bottom: none; }
 .facts span { color: var(--muted); }
 
+.timeline { border-left: 2px solid var(--border); padding-left: 30px; }
+.timeline-item { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; }
+.timeline-item .dot { position: absolute; left: -39px; top: 30px; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--bg); }
+.timeline-item .when { font-size: 0.85rem; margin-bottom: 4px; }
+.timeline-item h4 { font-size: 1.2rem; margin-bottom: 6px; }
+.muted { color: var(--muted); }
+
 .chips { display: flex; flex-wrap: wrap; gap: 12px; }
 .chips span {
   padding: 10px 20px; border-radius: 999px; background: var(--card);
