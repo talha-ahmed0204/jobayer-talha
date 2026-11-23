@@ -156,3 +156,21 @@ function updateDrop() {
 }
 addEventListener('scroll', updateDrop, { passive: true });
 updateDrop();
+
+// 3D tilt on cards
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches && matchMedia('(hover: hover)').matches) {
+  document.querySelectorAll('.tile, .t-card, .project').forEach(card => {
+    card.classList.add('tilt');
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.setProperty('--ry', (x * 10) + 'deg');
+      card.style.setProperty('--rx', (-y * 10) + 'deg');
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+    });
+  });
+}

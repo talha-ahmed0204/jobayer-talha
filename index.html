@@ -44,6 +44,8 @@
   <main>
     <!-- HERO -->
     <section id="home" class="hero">
+      <div class="hero-3d" aria-hidden="true"><canvas id="globe"></canvas></div>
+      <div class="hero-text">
       <div class="badge"><span class="pulse"></span> Your friendly neighborhood CS student</div>
       <h1><span class="hi">Hi, I'm</span> <span class="comic">Jobayer Ahmed Talha</span></h1>
       <p class="hero-sub">
@@ -66,6 +68,7 @@
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
           Narsingdi Govt. Polytechnic Institute
         </span>
+      </div>
       </div>
     </section>
 
@@ -242,5 +245,7 @@
   </footer>
 
   <script src="script.js"></script>
+  <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }</script>
+  <script type="module" src="three-scene.js"></script>
 </body>
 </html>
