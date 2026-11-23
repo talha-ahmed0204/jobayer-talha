@@ -310,3 +310,6 @@ a, button { cursor: pointer; }
 /* 3D tilt */
 .tilt { transform-style: preserve-3d; will-change: transform; }
 .tilt:hover { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translate(-4px, -4px); }
+
+.avatar.photo { width: 140px; height: 140px; object-fit: cover; padding: 0; background: none; }
+.avatar.photo::before { display: none; }
