@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jubayer — Personal Website</title>
+  <meta name="description" content="Hi, I'm Jubayer. Welcome to my personal website and portfolio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a href="#home" class="logo">J<span>.</span></a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact" class="btn btn-small">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <p class="mono hello">Hello, world! I'm</p>
+      <h1>Jubayer<span class="accent">.</span></h1>
+      <h2 class="typed"><span id="typed"></span><span class="cursor">|</span></h2>
+      <p class="lead">
+        A <span id="age">19</span>-year-old from Bangladesh who loves building things on the internet,
+        learning new technologies, and turning ideas into reality.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn">See my work</a>
+        <a href="#contact" class="btn btn-ghost">Say hello</a>
+      </div>
+    </section>
+
+    <section id="about" class="section reveal">
+      <h3 class="section-title"><span class="mono accent">01.</span> About me</h3>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Hi! I'm <strong>Jubayer</strong>, born on 4 September 2007. I'm curious by nature and
+            enjoy exploring technology, design, and creative projects.
+          </p>
+          <p>
+            This website is my little corner of the internet — a place to introduce myself,
+            share what I'm working on, and connect with people who share my interests.
+          </p>
+          <p>
+            When I'm not in front of a screen, you'll find me learning something new, spending time
+            with friends and family, or planning my next idea.
+          </p>
+        </div>
+        <div class="about-card">
+          <div class="avatar">J</div>
+          <ul class="facts">
+            <li><span>Name</span>Jubayer</li>
+            <li><span>Age</span><b id="age2">19</b></li>
+            <li><span>Born</span>4 Sep 2007</li>
+            <li><span>From</span>Bangladesh</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section reveal">
+      <h3 class="section-title"><span class="mono accent">02.</span> Skills &amp; interests</h3>
+      <div class="chips">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Web Design</span>
+        <span>Problem Solving</span><span>Creativity</span><span>Communication</span><span>Fast Learner</span>
+      </div>
+    </section>
+
+    <section id="projects" class="section reveal">
+      <h3 class="section-title"><span class="mono accent">03.</span> Projects</h3>
+      <div class="cards">
+        <article class="card">
+          <div class="card-top"><span class="folder">&#128193;</span><a href="#" aria-label="Link">&#8599;</a></div>
+          <h4>This Website</h4>
+          <p>My personal website and portfolio, designed and built from scratch and hosted on Vercel.</p>
+          <div class="tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><span class="folder">&#128193;</span><a href="#" aria-label="Link">&#8599;</a></div>
+          <h4>Project Two</h4>
+          <p>A short description of another project you're proud of. Replace this with your own.</p>
+          <div class="tags"><span>Tag</span><span>Tag</span></div>
+        </article>
+        <article class="card">
+          <div class="card-top"><span class="folder">&#128193;</span><a href="#" aria-label="Link">&#8599;</a></div>
+          <h4>Project Three</h4>
+          <p>Another placeholder project. Add a title, a one-line description and a link.</p>
+          <div class="tags"><span>Tag</span><span>Tag</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact reveal">
+      <h3 class="section-title center"><span class="mono accent">04.</span> Get in touch</h3>
+      <p class="lead center">
+        Whether you have a question, an idea, or just want to say hi — my inbox is always open.
+      </p>
+      <a class="btn btn-big" href="mailto:jatalha0204@gmail.com">Say hello</a>
+      <div class="socials">
+        <a href="https://github.com/talha-ahmed0204" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:jatalha0204@gmail.com">Email</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="mono">Designed &amp; built by Jubayer &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
